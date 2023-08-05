@@ -1,0 +1,132 @@
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  const option = (args[0] || "").toString();
+  conn.werewolf = conn.werewolf ? conn.werewolf : {};
+  let room = Object.values(conn.werewolf).find((room) => room.check(m.sender));
+  switch (option) {
+    case "start":
+      if (room)
+        return m.reply(
+          `Kamu sudah bergabung permainan Werewolf digrup ${conn.getName(
+            getJoinedGame(conn, m)
+          )}`
+        );
+      if (m.chat in conn.werewolf) return !0;
+      let getCode = code();
+      conn.werewolf[m.chat] = {
+        id: getCode,
+        player: [m.sender],
+        state: "WAITING",
+        check: function (who = "") {
+          return this.player.includes(who);
+        },
+      };
+      await conn.sendMessage(m.chat, {
+        text: `${m.name} memulai game Werewolf silahkan ketuk tombol dibawah untuk bergabung.\n\nTimeout *120* detik`,
+        templateButtons: [
+          {
+            index: 1,
+            urlButton: {
+              displayText: "Join",
+              url: `https://wa.me/${
+                conn.user.jid.split("@")[0]
+              }?text=${usedPrefix}werewolf join ${getCode}`,
+            },
+          },
+        ],
+      });
+      setTimeout(() => {
+        if (conn.werewolf[m.chat].player.length >= 5) {
+          startGame(conn.werewolf[m.chat]);
+          conn.werewolf[m.chat].state = "PLAYING";
+        } else {
+          m.reply("Player kurang dari 5 game dibatalkan!");
+          delete conn.werewolf[m.chat];
+        }
+      }, 120 * 1000);
+      break;
+    case "join":
+      if (room)
+        return m.reply(
+          `Kamu sudah bergabung permainan werewolf di ${await conn.getName(
+            getJoinedGame(conn, m)
+          )}`
+        );
+      if (!args[1])
+        return m.reply(
+          "Silahkan isikan kode permainan yang kamu dapat dari grup!"
+        );
+      if (!getGameChat(conn, args[1])) return m.reply("Kode tidak valid!");
+      let key = getGameChat(conn, args[1]);
+      if (conn.werewolf[key].state !== "WAITING")
+        return m.reply("Maaf game sudah dimulai. Mohon menunggu!");
+      if (conn.werewolf[key].player.length >= 27)
+        return m.reply(
+          "Maaf pemain sudah penuh. Silahkan menunggu sampai selesai!"
+        );
+      conn.werewolf[key].player.push(m.sender);
+      conn.sendMessage(key, {
+        text: `@${m.sender.split("@")[0]} bergabung dalam permainan!`,
+        mentions: [m.sender],
+      });
+      break;
+    case "leave":
+      if (!room)
+        return m.reply(
+          "Kamu belum bergabung digame Werewolf, silahkan cari grup untuk bermain Werewolf!"
+        );
+      //...
+      break;
+    case "vote":
+      if (!room)
+        return m.reply(
+          "Kamu belum bergabung digame Werewolf, silahkan cari grup untuk bermain Werewolf!"
+        );
+      if (room.state !== "VOTING")
+        return m.reply("Ada yang salah? Sesi voting belum dimulai!");
+      break;
+    default:
+    //...
+  }
+};
+
+handler.help = ["werewolf"];
+handler.tags = ["game"];
+handler.command = /^(werewolf|ww)$/i;
+export default handler;
+
+function code() {
+  // Declare a string variable
+  // which stores all string
+  var string = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let result = "";
+  // Find the length of string
+  var len = string.length;
+  for (let i = 0; i < 6; i++) {
+    result += string[Math.floor(Math.random() * len)];
+  }
+  return result;
+}
+
+const getJoinedGame = (conn, m) => {
+  let position = null;
+  Object.keys(conn.werewolf).forEach((i) => {
+    if (conn.werewolf[i].check(m.sender)) {
+      position = i;
+    }
+  });
+  if (position !== null) {
+    return position;
+  }
+};
+
+const getGameChat = (conn, key) => {
+  let position = null;
+  Object.keys(conn.werewolf).forEach((i) => {
+    if (conn.werewolf[i].id === key) {
+      position = i;
+    }
+  });
+  if (position !== null) {
+    return position;
+  }
+};

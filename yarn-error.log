@@ -1,0 +1,179 @@
+Arguments: 
+  /usr/local/bin/node /opt/yarn-v1.22.19/bin/yarn.js
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/mathjs/-/mathjs-11.8.0.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/opt/yarn-v1.22.19/lib/cli.js:141517:19)
+      at Object.onceWrapper (node:events:627:28)
+      at ClientRequest.emit (node:events:513:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:848:9)
+      at Object.onceWrapper (node:events:627:28)
+      at TLSSocket.emit (node:events:525:35)
+      at Socket._onTimeout (node:net:570:8)
+      at listOnTimeout (node:internal/timers:569:17)
+      at process.processTimers (node:internal/timers:512:7)
+
+npm manifest: 
+  {
+      "name": "SkyBot",
+      "version": "3.0.0",
+      "description": "WhatsApp BOT By Arifzyn",
+      "main": "index.js",
+      "type": "module",
+      "directories": {
+          "lib": "lib",
+          "src": "src",
+          "plugins": "plugins"
+      },
+      "scripts": {
+          "start": "node index.js",
+          "test": "node test.js",
+          "test2": "nodemon index.js"
+      },
+      "keywords": [
+          "termux-whatsapp-bot",
+          "whatsapp-bot",
+          "whatsapp",
+          "js-whatsapp",
+          "whatsapp",
+          "wabot-aq"
+      ],
+      "homepage": "https://github.com/ArifzynXD",
+      "author": {
+          "name": "ArifzynXD"
+      },
+      "repository": {
+          "type": "git",
+          "url": "git+https://github.com/ArifzynXD"
+      },
+      "bugs": {
+          "url": "https://github.com/ArifzynXD"
+      },
+      "license": "GPL-3.0-or-later",
+      "dependencies": {
+          "@adiwajshing/baileys": "npm:baileysv2@^9.0.5",
+          "@adiwajshing/keyed-db": "^0.2.4",
+          "@bochilteam/scraper": "3.0.0",
+          "@kazesolo/toanime": "^1.0.0",
+          "@neoxr/neoxr-js": "^1.4.8",
+          "@phaticusthiccy/open-apis": "^1.8.5",
+          "@remobile/react-native-contacts": "^1.0.4",
+          "@shineiichijo/nhentai-ts": "^1.0.1",
+          "@vitalets/google-translate-api": "^8.0.0",
+          "@xct007/frieren-scraper": "^0.0.2",
+          "@yimura/scraper": "^1.2.4",
+          "acrcloud": "^1.4.0",
+          "aki-api": "^6.0.8",
+          "aki-api-v2": "^6.0.9",
+          "anime-images-api": "^2.0.0",
+          "anime-wallpaper": "^1.1.1",
+          "arifzyn-scraper": "^1.3.1",
+          "awesome-phonenumber": "^2.68.0",
+          "axios": "^0.27.2",
+          "brainly-scraper-v2": "^2.0.9",
+          "caliph-api": "^1.0.0",
+          "canvas-gif": "github:AlipBot/canvas-gif-attp",
+          "cerebro-aptoide": "^1.0.3",
+          "cfonts": "^3.1.1",
+          "chalk": "^5.0.1",
+          "cheerio": "^1.0.0-rc.12",
+          "colors": "1.4.0",
+          "deepai": "^1.0.21",
+          "dhn-api": "^1.1.3",
+          "dir2pdf": "^1.5.1",
+          "emoji-api": "^1.0.2",
+          "express": "^4.18.1",
+          "file-identity": "^0.0.1",
+          "file-type": "^18.0.0",
+          "fluent-ffmpeg": "^2.1.2",
+          "formdata-node": "^5.0.0",
+          "gdrive-downloader": "^0.0.2",
+          "genshin": "^1.2.4",
+          "google-it": "^1.6.2",
+          "google-play-cli": "^4.5.1-0",
+          "google-play-scraper": "github:facundoolano/google-play-scraper",
+          "guess-the-song-contracts": "^1.0.6",
+          "hmtai": "^3.2.1",
+          "https": "^1.0.0",
+          "human-readable": "^0.2.1",
+          "hxz-api": "^1.0.1",
+          "imgbb-uploader": "^1.3.5",
+          "instagram-url-direct": "^1.0.12",
+          "instagram-url-downloader": "^1.1.0",
+          "javascript-obfuscator": "^4.0.2",
+          "jimp": "^0.16.1",
+          "jsdom": "^19.0.0",
+          "jxr-canvas": "^1.8.0",
+          "knights-canvas": "^1.3.7-a",
+          "lodash": "^4.17.21",
+          "lowdb": "^3.0.0",
+          "mangakakalot-scrapper": "^0.0.3",
+          "mime-types": "^2.1.34",
+          "moment-timezone": "^0.5.34",
+          "mongoose": "^6.4.3",
+          "nekopoi-scraper": "^2.6.9",
+          "nekos.life": "^2.0.7",
+          "nhentai-pdf": "^1.0.0",
+          "node-base64-image": "^2.0.4",
+          "node-fetch": "^3.2.10",
+          "node-getfile": "^1.0.0",
+          "node-gtts": "^2.0.2",
+          "node-os-utils": "^1.3.6",
+          "node-red-contrib-googleplay": "^1.0.14",
+          "node-webpmux": "^3.1.1",
+          "nodemailer": "6.9.1",
+          "ocr-space-api-wrapper": "^2.1.1",
+          "openai": "^3.1.0",
+          "parse-filepath": "^1.0.2",
+          "perf_hooks": "^0.0.1",
+          "photo2anime": "^1.0.0",
+          "pino": "^7.8.0",
+          "pino-pretty": "^7.5.1",
+          "prettier-html": "^0.0.2",
+          "qrcode": "^1.5.0",
+          "qrcode-terminal": "^0.12.0",
+          "readline": "^1.3.0",
+          "remove.bg": "^1.3.0",
+          "replicate": "^0.12.1",
+          "scraper-qq": "^1.0.1",
+          "similarity": "^1.2.1",
+          "simple-git": "^3.18.0",
+          "simsimi-api": "^1.0.3",
+          "socket.io": "^4.4.1",
+          "spinnies": "^0.5.1",
+          "stickerwa-search": "^1.1.0",
+          "syntax-error": "^1.4.0",
+          "terminal-image": "^2.0.0",
+          "translate-google-api": "^1.0.4",
+          "upscaler": "^1.0.0-beta.16",
+          "url-regex-safe": "^3.0.0",
+          "videolinkapi": "^1.0.0",
+          "waifu.js": "^1.0.0",
+          "yargs": "^17.5.1",
+          "youtube-yts": "^2.0.0",
+          "yt-search": "^2.10.4",
+          "ytdl-core": "^4.11.2",
+          "zs-extract": "^1.4.1"
+      },
+      "optionalDependencies": {
+          "wa-sticker-formatter": "^4.3.2"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

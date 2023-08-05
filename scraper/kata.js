@@ -1,0 +1,44 @@
+import cheerio from "cheerio";
+import fetch from "node-fetch";
+
+export async function quotes(input) {
+  return new Promise((resolve, reject) => {
+    fetch(
+      "https://jagokata.com/kata-bijak/kata-" +
+        input.replace(/\s/g, "_") +
+        ".html?page=1"
+    )
+      .then((res) => res.text())
+      .then((res) => {
+        const $ = cheerio.load(res);
+        let data = [];
+        $('div[id="main"]')
+          .find('ul[id="citatenrijen"] > li')
+          .each(function (index, element) {
+            data.push({
+              author: $(this)
+                .find('div[class="citatenlijst-auteur"] > a')
+                .text()
+                .trim(),
+              bio: $(this)
+                .find('span[class="auteur-beschrijving"]')
+                .text()
+                .trim(),
+              quote: $(element).find('q[class="fbquote"]').text().trim(),
+            });
+          });
+        data.splice(2, 1);
+        if (data.length == 0)
+          return resolve({
+            creator: "@neoxr - Wildan Izzudin & @ariffb.id - Ariffb",
+            status: false,
+          });
+        resolve({
+          creator: "@Arifzyn",
+          status: true,
+          data,
+        });
+      })
+      .catch(reject);
+  });
+}

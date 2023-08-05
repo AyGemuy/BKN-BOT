@@ -1,0 +1,14 @@
+import fs from 'fs'
+
+let handler = async (m, { conn }) => {
+let hina = fs.readFileSync('./json/hinata.json')
+let res = `${pickRandom(hina)}`
+conn.sendFile(m.chat, res, '', 'Hinata', m)
+}
+handler.command = ['hina']
+
+export default handler 
+
+function pickRandom(list) {
+  return list[Math.floor(list.length * Math.random())]
+}
